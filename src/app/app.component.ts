@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AppComponent {
   form: FormGroup;
+  @ViewChild('drawer')
+  private drawer!: MatSidenav;
 
   constructor(public fb: FormBuilder, public http: HttpClient) {
     this.form = this.fb.group({
@@ -18,6 +21,10 @@ export class AppComponent {
   }
 
   ngOnInit() { }
+
+  toggleSidenav(){
+    this.drawer.toggle();
+  }
 
   uploadFile(event: Event) {
     const inputEvent = event as unknown as InputEvent;
