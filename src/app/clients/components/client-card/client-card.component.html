@@ -1,12 +1,12 @@
 <mat-card fxLayout="column" class="client-card">
     <mat-card-header fxLayout="row">
-        <mat-card-title>Kuehne+Nagel</mat-card-title>
-        <img src="https://content.presspage.com/clients/o_1918.png" class="logo">
-        <mat-card-subtitle>Logística</mat-card-subtitle>
+        <mat-card-title>{{name}}</mat-card-title>
+        <img src="{{image.getSrc()}}" class="logo">
+        <mat-card-subtitle>{{occupation}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <p>
-        Kuehne + Nagel International AG is a global transport and logistics company based in Bremen, Germany. It was founded in 1890, in Bremen, Germany, by August Kühne and Friedrich Nagel. It provides sea freight and airfreight forwarding, contract logistics, and overland businesses.
+        {{description}}
       </p>
     </mat-card-content>
     <mat-card-actions fxLayout="column">

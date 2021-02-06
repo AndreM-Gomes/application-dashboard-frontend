@@ -1,0 +1,42 @@
+<div fxFlex="100" fxLayout="column">
+  <form style="width: 50%" fxFlexAlign="center" [formGroup]="clientCreateForm" (ngSubmit)="onSubmit()">
+    <mat-card class="form-card">
+      <mat-card-header>
+        <mat-card-title>Informações sobre o cliente</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px" fxFlex="100">
+          <div fxFlex="50" fxLayout="column">
+            <mat-form-field>
+              <input matInput placeholder="Nome" formControlName="name">
+              <mat-error *ngIf="clientCreateForm.controls['name'].hasError('required')">
+                É <strong>necessário</strong> informar o nome do cliente
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Área de atuação" formControlName="occupation">
+              <mat-error *ngIf="clientCreateForm.controls['occupation'].hasError('required')">
+                É <strong>necessário</strong> informar a ocupação do cliente
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <textarea matInput placeholder="Descrição" formControlName="description"></textarea>
+            </mat-form-field>
+          </div>
+          <div fxFlex="50" fxLayout="column" fxLayoutAlign="space-between">
+            <div fxLayout="column">
+              <label for="logo">Insira a logo</label>
+              <input type="file" id="logo"  (change)="uploadFile($event)">
+            </div>
+            <div *ngIf="hasInputtedImage; then showImage else showPlaceHolder"></div>
+            <ng-template #showImage><img src="{{url}}" alt="Logo"></ng-template>
+            <ng-template #showPlaceHolder><mat-icon>insert_photo</mat-icon></ng-template>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Salvar</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

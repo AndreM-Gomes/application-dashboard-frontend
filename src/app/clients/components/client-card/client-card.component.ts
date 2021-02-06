@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import {Image} from '../../../shared/utils/image';
 
 @Component({
   selector: 'app-client-card',
@@ -8,7 +9,9 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ClientCardComponent implements OnInit {
 
   @Input() name!: string;
-  
+  @Input() image!: Image;
+  @Input() occupation!: string;
+  @Input() description!: string;
 
   constructor() { }
 

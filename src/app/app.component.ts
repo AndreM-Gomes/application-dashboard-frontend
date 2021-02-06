@@ -26,20 +26,7 @@ export class AppComponent {
     this.drawer.toggle();
   }
 
-  uploadFile(event: Event) {
-    const inputEvent = event as unknown as InputEvent;
-    const target = inputEvent?.target as HTMLInputElement;
-    if(target){
-      const files = target?.files;
-      if(files){
-        const file = files[0];
-        this.form.patchValue({
-          avatar: file
-        });
-        this.form.get('avatar')?.updateValueAndValidity()
-      }
-    }
-  }
+
 
   submitForm() {
     const formData = new FormData();

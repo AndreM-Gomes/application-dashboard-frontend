@@ -1,3 +1,17 @@
-<div fxLayout="row" fxLayoutGap="20px">
-    <app-client-card></app-client-card>
+<div fxLayout="column" fxLayoutAlign="space-between" class="max-height">
+  <div fxLayout="row" fxLayoutGap="20px">
+    <app-client-card
+      [name]="'Kuehne+Nagel'"
+      [image]="image"
+      [occupation]="'Logística'"
+      [description]="description">
+
+    </app-client-card>
+
+  </div>
+  <div fxLayout="row" fxFlexAlign="end" class="fab-padding">
+    <button [routerLink]="'/clientes/novo-cliente'" fxFlexAlign="end center" mat-fab color="primary" aria-label="Criar um novo cliente">
+      <mat-icon>create</mat-icon>
+    </button>
+  </div>
 </div>
