@@ -1,13 +1,20 @@
 <div fxLayout="column" fxLayoutAlign="space-between" class="max-height">
   <div fxLayout="row" fxLayoutGap="20px">
-    <app-client-card
-      [name]="'Kuehne+Nagel'"
-      [image]="image"
-      [occupation]="'Logística'"
-      [description]="description">
+    <div *ngFor="let client of (clients$ | async)">
+      <app-client-card
+        [name]="client.name"
+        [image]="client.logo"
+        [occupation]="client.occupation"
+        [description]="client.description">
+      </app-client-card>
+    </div>
+<!--    <app-client-card-->
+<!--      [name]="'Kuehne+Nagel'"-->
+<!--      [image]="image"-->
+<!--      [occupation]="'Logística'"-->
+<!--      [description]="description">-->
 
-    </app-client-card>
-
+<!--    </app-client-card>-->
   </div>
   <div fxLayout="row" fxFlexAlign="end" class="fab-padding">
     <button [routerLink]="'/clientes/novo-cliente'" fxFlexAlign="end center" mat-fab color="primary" aria-label="Criar um novo cliente">

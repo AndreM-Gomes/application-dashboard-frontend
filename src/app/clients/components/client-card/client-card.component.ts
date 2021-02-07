@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {Image} from '../../../shared/utils/image';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-client-card',
@@ -9,7 +9,7 @@ import {Image} from '../../../shared/utils/image';
 export class ClientCardComponent implements OnInit {
 
   @Input() name!: string;
-  @Input() image!: Image;
+  @Input() image!: string | File;
   @Input() occupation!: string;
   @Input() description!: string;
 

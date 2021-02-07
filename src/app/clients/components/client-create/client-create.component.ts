@@ -3,6 +3,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import {Image} from '../../../shared/utils/image';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
+import {Client} from '../../client-model';
+import {ClientService} from '../../client.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-client-create',
@@ -22,18 +25,16 @@ export class ClientCreateComponent {
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient
+    private clientService: ClientService,
+    private router: Router
     ) {}
 
   onSubmit(): void {
-    const formData = new FormData();
-
-    formData.append('name', this.clientCreateForm.get('name')?.value);
-    formData.append('occupation', this.clientCreateForm.get('occupation')?.value);
-    formData.append('description', this.clientCreateForm.get('description')?.value);
-    formData.append('logo', this.clientCreateForm.get('logo')?.value);
-
-    this.http.post(`${environment.apiUrl}/company`, formData);
+    const { description, logo, name, occupation } = this.clientCreateForm.value;
+    const client = new Client(null, name, occupation, description, logo);
+    this.clientService.createClient(client).subscribe(value => {
+      this.router.navigate(['/clientes']).then(r => console.log(r));
+    });
   }
 
   uploadFile(event: Event): void {
@@ -52,7 +53,7 @@ export class ClientCreateComponent {
           this.hasInputtedImage = true;
         };
         this.clientCreateForm.patchValue({
-          avatar: file
+          logo: file
         });
         this.clientCreateForm.get('logo')?.updateValueAndValidity();
       }
